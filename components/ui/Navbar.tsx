@@ -2,8 +2,19 @@ import NextLink from 'next/link';
 
 import { AppBar, Badge, Box, Button, IconButton, Link, Toolbar, Typography } from '@mui/material';
 import { SearchOutlined, ShoppingCartOutlined } from '@mui/icons-material';
+import { useRouter } from 'next/router';
+import { UiContex } from '../../context';
+import { useContext } from 'react';
 
 export const Navbar = () => {
+    const {toggleMenu} = useContext(UiContex)
+    const router = useRouter();
+    
+    const isActive   = ( urlBtn : string )=> {
+        if ( urlBtn === router.asPath) return true;
+        return false;
+    }
+
   return (
     <AppBar>
         <Toolbar>
@@ -17,19 +28,19 @@ export const Navbar = () => {
             <Box flex={ 1 } />
 
             <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-                <NextLink href='/category/men' passHref>
+                <NextLink href='/category/men' passHref >
                     <Link>
-                        <Button>Hombres</Button>
+                        <Button sx={{mx: '4px'}} color={ isActive('/category/men') ? 'primary' : 'info' }>Hombres</Button>
                     </Link>
                 </NextLink>
                 <NextLink href='/category/women' passHref>
                     <Link>
-                        <Button>Mujeres</Button>
+                        <Button sx={{mx: '4px'}}  color={ isActive('/category/women') ? 'primary' : 'info' }>Mujeres</Button>
                     </Link>
                 </NextLink>
-                <NextLink href='/category/kid' passHref>
+                <NextLink href='/category/kids' passHref>
                     <Link>
-                        <Button>Niños</Button>
+                        <Button sx={{mx: '4px'}}  color={ isActive('/category/kids') ? 'primary' : 'info' }>Niños</Button>
                     </Link>
                 </NextLink>
             </Box>
@@ -52,7 +63,7 @@ export const Navbar = () => {
             </NextLink>
 
 
-            <Button>
+            <Button  onClick={toggleMenu}>
                 Menú
             </Button>
 

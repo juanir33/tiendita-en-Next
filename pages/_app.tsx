@@ -1,16 +1,19 @@
-import '../styles/globals.css';
-import type { AppProps } from 'next/app';
-import { CssBaseline, ThemeProvider } from '@mui/material';
+import "../styles/globals.css";
+import type { AppProps } from "next/app";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 
-import { lightTheme } from '../themes';
+import { lightTheme } from "../themes";
+import UiProvider from "../context/UiProvider";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <ThemeProvider theme={ lightTheme}>
-        <CssBaseline />
-        <Component {...pageProps} />
-    </ThemeProvider>
-  )
+	return (
+		<UiProvider>
+			<ThemeProvider theme={lightTheme}>
+				<CssBaseline />
+				<Component {...pageProps} />
+			</ThemeProvider>
+		</UiProvider>
+	);
 }
 
-export default MyApp
+export default MyApp;
