@@ -15,5 +15,14 @@ export interface IProduct {
 
 }
 
+
+export interface SearchProduct {
+	title: string;
+	images: string[];
+	price: number;
+	inStock: number;
+	slug: string;
+}
+
 export type ISize = 'XS'|'S'|'M'|'L'|'XL'|'XXL'|'XXXL';
 export type IType = 'shirts'|'pants'|'hoodies'|'hats';
